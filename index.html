@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 	<meta charset="utf-8">
-	<title>Satellite Viz 3rd graph</title>
+	<title>Satellite Trajectory Visualization</title>
+	<link rel="stylesheet" type="text/css" href="./inspector.css">
 	<body>
-		<style>
-			body { background-color: rgb(20, 20, 20); text-align: center;}        
+		<style type=text/css>
+			body { background-color: rgb(20, 20, 20); text-align: center;}    
+			.finalgraph{ 
+				 padding : 1%; 
+				 color: white; 
+				 background-color: 009900; 
+				 width: 90%;
+				 height: 800;
+				 border: solid red; 
+			} 
 		</style>
 		
 		<!-- Load d3.js & color palette -->
@@ -13,7 +22,7 @@
 
 		<!-- Create a div where the graph will take place -->
 		<div>
-		  <h3 style="color:white;">Types of Orbits</h3>
+		  <h2 style="color:white;">Types of Orbits</h2>
 		  <svg id="my_dataviz3" height=50 width=320 ></svg>
 		</div>
 
@@ -53,5 +62,20 @@
 		<iframe width="90%" height="800" style="border: none;"
 			src="https://observablehq.com/embed/8565c22054cc8d3d?cell=globe">
 		</iframe>
+		
+		<h2 style="color:white;">Visualizing all the Satellites</h2>
+		
+		<div style="margin: 30px;"> 
+			<script type="module">
+
+			import define from "./index.js";
+			import {Runtime, Library, Inspector} from "./runtime.js";
+
+			const runtime = new Runtime();
+			const main = runtime.module(define, Inspector.into(document.body));
+
+			</script>
+		</div>
+
 	</body>
 </html>
