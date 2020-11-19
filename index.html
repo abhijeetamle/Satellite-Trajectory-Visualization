@@ -1,81 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-	<meta charset="utf-8">
-	<title>Satellite Trajectory Visualization</title>
-	<link rel="stylesheet" type="text/css" href="./inspector.css">
-	<body>
-		<style type=text/css>
-			body { background-color: rgb(20, 20, 20); text-align: center;}    
-			.finalgraph{ 
-				 padding : 1%; 
-				 color: white; 
-				 background-color: 009900; 
-				 width: 90%;
-				 height: 800;
-				 border: solid red; 
-			} 
-		</style>
-		
-		<!-- Load d3.js & color palette -->
-		<script src="https://d3js.org/d3.v4.js"></script>
-		<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Satellite Trajectory Visualization</title>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <style>
+		body { background-color: rgb(40, 40, 40); text-align: center;}    
+    </style>
+</head>
 
-		<!-- Create a div where the graph will take place -->
-		<div>
-		  <h2 style="color:white;">Types of Orbits</h2>
-		  <svg id="my_dataviz3" height=50 width=320 ></svg>
-		</div>
+<body>
 
-		<script>
+	<!-- Adding 1st Visualization -->
+
+	<div>
+        <h1 style="color:white;">Satellites Distributions In The World</h1>
+
+        <h4 style="color:white;">Technological advancement has made space exploration become much easier than in the past.
+            In 1957, the first satellite was launched into space. There are now 2,666 satellites until April 2020.
+            This chart shows how many satellites are that each country has launched. Colors present the amount of satellite.
+            By clicking map, you will see the name of country and detail satellites number. </h4>
+    </div>
+
+    <div class="legend"></div>
+    <div class="worldMap"></div>
+
+    <script type="module">
+        import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+        import define from "https://api.observablehq.com/d/162442446f21db02.js?v=3";
+
+        (new Runtime).module(define, name => {
+            if (name === "legend") return Inspector.into(".legend")();
+            if (name === "worldMap") return Inspector.into(".worldMap")();
+        });
+    </script>
+
+	<!-- Adding 2nd Visualization -->
+	
+	<div>
+        <h1 style="color:white;">Satellites Application</h1>
+
+        <h4 style="color:white;">Based on our dataset, satellites are mainly classified by four application areas: Government, Military, Commercial and Civil.
+            The following static graph presents the development trend of satellite since 1988.
+            As you can see, they all develop fast in the recent years, especially in the commercial application. </h4>
+    </div>
+
+        <div class="lineChart" style="position: absolute;margin-left: 30%"></div>
+        <div style="position: absolute;margin-left: 35%"><svg id="colorLegend" height=300 width=450></svg></div>
+
+    <script type="module">
+        import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+        import define from "https://api.observablehq.com/d/7f982f54a50e68c1.js?v=3";
+        (new Runtime).module(define, name => {
+            if (name === "lineChart") return Inspector.into(".lineChart")();
+        });
+    </script>
+
+	<!-- Adding Legends for 2nd Visualization -->
+
+    <script>
+        var svg = d3.select("#colorLegend")  // select the svg area
+
+        // Handmade legend
+        svg.append("circle").attr("cx",20).attr("cy",80).attr("r", 6).style("fill", "#fb9a99")
+        svg.append("circle").attr("cx",20).attr("cy",100).attr("r", 6).style("fill", "#a6cee3")
+        svg.append("circle").attr("cx",20).attr("cy",120).attr("r", 6).style("fill", "#fdbf6f")
+        svg.append("circle").attr("cx",20).attr("cy",140).attr("r", 6).style("fill", "#9ACD32")
+        svg.append("text").attr("x", 40).attr("y", 82).text("Government").style("fill", "white").style("font-size", "15px").style("font-family", "KSC").attr("alignment-baseline","middle")
+        svg.append("text").attr("x", 40).attr("y", 102).text("Military").style("fill", "white").style("font-size", "15px").style("font-family", "KSC").attr("alignment-baseline","middle")
+        svg.append("text").attr("x", 40).attr("y", 122).text("Commercial").style("fill", "white").style("font-size", "15px").style("font-family", "KSC").attr("alignment-baseline","middle")
+        svg.append("text").attr("x", 40).attr("y", 142).text("Civil").style("fill", "white").style("font-size", "15px").style("font-family", "KSC").attr("alignment-baseline","middle")
+    </script>
+	<div style="margin-top: 20px;"></div>
+	
+	<!-- Adding Legends for 3rd Visualization -->
+	<div style="margin-top: 550px;"></div>
+	<div>
+		<h2 style="color:white;">Types of Orbits</h2>
+		<svg id="my_dataviz3" height=50 width=320 ></svg>
+	</div>
+	
+	<script>
 		// select the svg area
 		var SVG = d3.select("#my_dataviz3")
 
 		// create a list of keys
 		var keys = ["Leo", "Meo", "Geo", "Elliptical"]
 		// var keys = ["Green", "Pink", "Blue", "Yellow"]
-		
-		var color = {"Leo":"#7ee695", "Elliptical":"#ed7be0", "Meo":"#bdd8f2", "Geo":"#f2d96b"};
+
+		var color = {"Leo":"#7ee695", "Elliptical":"#ed7be0", "Meo":"#8490e8", "Geo":"#f2d96b"};
 
 		var size = 20
 		SVG.selectAll("mydots")
-		  .data(keys)
-		  .enter()
-		  .append("rect")
+			.data(keys)
+			.enter()
+			.append("rect")
 			.attr("y", 15)
 			.attr("x", function(d,i){ return 20 + i*(size+45)}) // 100 is where the first dot appears. 25 is the distance between dots
 			.attr("width", size)
 			.attr("height", size)
 			.style("fill", function(d){ return color[d]})
-		
+
 		SVG.selectAll("mylabels")
-		  .data(keys)
-		  .enter()
-		  .append("text")
+			.data(keys)
+			.enter()
+			.append("text")
 			.attr("y", 17 + size / 2)
 			.attr("x", function(d,i){ return 20 + i*(size+45) + (size+3)}) // 100 is where the first dot appears. 25 is the distance between dots
 			.style("fill", function(d){ return color[d]})
 			.text(function(d){ return d})
 			.attr("text-anchor", "left")
 			.style("alignment-baseline", "middle")
-		</script>
-		
-		<iframe width="90%" height="800" style="border: none;"
-			src="https://observablehq.com/embed/8565c22054cc8d3d?cell=globe">
-		</iframe>
-		
-		<h2 style="color:white;">Visualizing all the Satellites</h2>
-		
-		<div style="margin: 30px;"> 
-			<script type="module">
+	</script>
+	
+	<!-- Adding 3rd Visualization -->
+	
+	<div class="globe_3"></div>
+			
+	<script type="module">
+	import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+	import define from "https://api.observablehq.com/d/8565c22054cc8d3d.js?v=3";
+	(new Runtime).module(define, name => {
+	  if (name === "globe_3") return Inspector.into(".globe_3")();
+	  if (name === "simulate") return true;
+	  if (name === "scene") return true;
+	  if (name === "orbit") return true;
+	  if (name === "renderer") return true;
+	  if (name === "controls") return true;
+	  if (name === "camera") return true;
+	  if (name === "light") return true;
+	  if (name === "earth") return true;
+	  if (name === "texture") return true;
+	  if (name === "naturalEarth") return true;
+	  if (name === "map") return true;
+	  if (name === "G") return true;
+	  if (name === "earthMass") return true;
+	  if (name === "earthRadius") return true;
+	  if (name === "earthAngularVelocity") return true;
+	  if (name === "dataset") return true;
+	  if (name === "THREE") return true;
+	  if (name === "d3") return true;
+	});
+	</script>
+	
+	<!-- Adding 4th Visualization -->
+	
+	
+	<div style="height: 150px"></div>
+	<h2 style="color:white;">Visualizing all the Satellites</h2>
+	<div class="globe"></div>
 
-			import define from "./index.js";
-			import {Runtime, Library, Inspector} from "./runtime.js";
-
-			const runtime = new Runtime();
-			const main = runtime.module(define, Inspector.into(document.body));
-
-			</script>
-		</div>
-
-	</body>
+	<script type="module">
+	import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+	import define from "https://api.observablehq.com/d/21dcabcb632f885c.js?v=3";
+	(new Runtime).module(define, name => {
+	  if (name === "globe") return Inspector.into(".globe")();
+	  if (name === "scene") return true;
+	  if (name === "orbit") return true;
+	  if (name === "renderer") return true;
+	  if (name === "controls") return true;
+	  if (name === "camera") return true;
+	  if (name === "light") return true;
+	  if (name === "earth") return true;
+	  if (name === "texture") return true;
+	  if (name === "G") return true;
+	  if (name === "earthMass") return true;
+	  if (name === "earthRadius") return true;
+	  if (name === "earthAngularVelocity") return true;
+	  if (name === "map") return true;
+	  if (name === "naturalEarth") return true;
+	  if (name === "dataset") return true;
+	  if (name === "THREE") return true;
+	  if (name === "d3") return true;
+	});
+	</script>
+	
+</body>
 </html>
