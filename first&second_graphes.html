@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>data visualization</title>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <style>
+        div{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+<!--first graph-->
+
+    <div>
+        <h1>Satellites Distributions In The Word</h1>
+
+        <h4>Technological advancement has made space exploration become much easier than in the past.
+            In 1957, the first satellite was launched into space. There are now 2,666 satellites until April 2020.
+            This chart shows how many satellites are that each country has launched. Colors present the amount of satellite.
+            By clicking map, you will see the name of country and detail satellites number. </h4>
+    </div>
+
+    <div class="legend"></div>
+    <div class="worldMap"></div>
+
+    <script type="module">
+        import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+        import define from "https://api.observablehq.com/d/162442446f21db02.js?v=3";
+
+        (new Runtime).module(define, name => {
+            if (name === "legend") return Inspector.into(".legend")();
+            if (name === "worldMap") return Inspector.into(".worldMap")();
+        });
+    </script>
+
+    <div style="height: 150px"></div>
+
+    <!--second graph-->
+    <div>
+        <h1>Satellites Application</h1>
+
+        <h4>Based on our dataset, satellites are mainly classified by four application areas: Government, Military, Commercial and Civil.
+            The following static graph presents the development trend of satellite since 1988.
+            As you can see, they all develop fast in the recent years, especially in the commercial application. </h4>
+    </div>
+
+
+
+        <div class="lineChart" style="position: absolute;margin-left: 30%"></div>
+        <div style="position: absolute;margin-left: 55%"><svg id="colorLegend" height=300 width=450></svg></div>
+
+    <script type="module">
+        import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+        import define from "https://api.observablehq.com/d/7f982f54a50e68c1.js?v=3";
+        (new Runtime).module(define, name => {
+            if (name === "lineChart") return Inspector.into(".lineChart")();
+        });
+    </script>
+
+
+
+    <script>
+        var svg = d3.select("#colorLegend")  // select the svg area
+
+        // Handmade legend
+        svg.append("circle").attr("cx",200).attr("cy",130).attr("r", 6).style("fill", "#fb9a99")
+        svg.append("circle").attr("cx",200).attr("cy",150).attr("r", 6).style("fill", "#a6cee3")
+        svg.append("circle").attr("cx",200).attr("cy",170).attr("r", 6).style("fill", "#fdbf6f")
+        svg.append("circle").attr("cx",200).attr("cy",190).attr("r", 6).style("fill", "#9ACD32")
+        svg.append("text").attr("x", 220).attr("y", 130).text("Government").style("font-size", "15px").style("font-family", "KSC").attr("alignment-baseline","middle")
+        svg.append("text").attr("x", 220).attr("y", 150).text("Military").style("font-size", "15px").style("font-family", "KSC").attr("alignment-baseline","middle")
+        svg.append("text").attr("x", 220).attr("y", 170).text("Commercial").style("font-size", "15px").style("font-family", "KSC").attr("alignment-baseline","middle")
+        svg.append("text").attr("x", 220).attr("y", 190).text("Civil").style("font-size", "15px").style("font-family", "KSC").attr("alignment-baseline","middle")
+    </script>
+
+
+</body>
+</html>
