@@ -55,7 +55,7 @@
 
 	<!-- Adding 2nd Visualization -->
 	
-	<div>
+	<div style="height: 10px"></div>
         <h2 style="color:white;">Satellites Application</h2>
 
         <h4 style="color:white;">Satellites are launched into space for a number of reasons. They do everything from military reconnaissance to keeping
@@ -63,7 +63,7 @@
         In general, Satellites are mainly classified by four application areas: Government, Military, Commercial and Civil.
         The following static graph presents the development trend of satellite since 1988. </h4>
     </div>
-
+	<div style="margin-bottom: 450px;">
         <div class="lineChart" style="position: absolute;margin-left: 20%"></div>
         <div style="position: absolute;margin-left: 25%"><svg id="colorLegend" height=300 width=450></svg></div>
 
@@ -80,7 +80,7 @@
     <script>
         var svg = d3.select("#colorLegend")  // select the svg area
 
-        // Handmade legend
+        // Legends
         svg.append("circle").attr("cx",20).attr("cy",80).attr("r", 6).style("fill", "#fb9a99")
         svg.append("circle").attr("cx",20).attr("cy",100).attr("r", 6).style("fill", "#a6cee3")
         svg.append("circle").attr("cx",20).attr("cy",120).attr("r", 6).style("fill", "#fdbf6f")
@@ -90,11 +90,12 @@
         svg.append("text").attr("x", 40).attr("y", 122).text("Commercial").style("fill", "white").style("font-size", "15px").style("font-family", "KSC").attr("alignment-baseline","middle")
         svg.append("text").attr("x", 40).attr("y", 142).text("Civil").style("fill", "white").style("font-size", "15px").style("font-family", "KSC").attr("alignment-baseline","middle")
     </script>
-	<div style="margin-top: 20px;"></div>
+	</div>
 	
 	<!-- Adding Legends for 3rd Visualization -->
-	<div style="margin-top: 550px;"></div>
+	
 	<div>
+		<div style="height: 100px"></div>
 		<h2 style="color:white;">Types of Orbits</h2>
 		<h4 style="color:white;">Satellites are not randomly scatting on the space but rotate with the Earth and have own trajectory. Most of them distribute the following tracks:
                        Leo, Meo, Geo and Elliptical. Drag the trajectory to see change and zoom it to see whole outlook.</h4>
@@ -166,8 +167,7 @@
 	
 	<!-- Adding 4th Visualization -->
 	
-	
-	<div style="height: 150px"></div>
+	<div style="height: 70px"></div>
 	<h2 style="color:white;">Visualizing all the Satellites</h2>
 	<h4 style="color:white;">This dynamic graph presents how satellites rotate with the Earth. </h4>
 	<div class="globe"></div>
