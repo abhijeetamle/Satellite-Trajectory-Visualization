@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+
+<title>Satellite Viz 3rd graph</title>
+
+<body>
+<style>
+	body { text-align: center;}        
+</style>
+
+<div class="globe"></div>
+
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+import define from "https://api.observablehq.com/d/8565c22054cc8d3d.js?v=3";
+(new Runtime).module(define, name => {
+    if (name === "globe") return Inspector.into(".globe")();
+});
+</script>
+
+</body>
+</html>
