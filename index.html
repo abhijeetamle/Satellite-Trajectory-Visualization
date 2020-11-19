@@ -17,17 +17,27 @@
 </head>
 
 <body>
+	
+	<!--short introduction-->
+        <div style="height: 200px">
+        <h1 style="color:white;font-size: 250%">Satellites Story</h1>
+
+        <h3 style="color:gray">Since 1957, the first satellite was launched into space. Hundreds of satellites are launched into Earth’s orbit every year,
+           until April 2020, there are now 2,666 satellites. Over the coming decade, it’s estimated by Euroconsult that 990 satellites will be launched every year,
+           which means that by 2028, there could be 15,000 satellites in orbit. Human has great interest in exploring the space. In the past,
+           satellites were just used to navigation, while at present, satellites are becoming critical for everything from internet connectivity
+           and precision agriculture, to border security and archaeological study. For more satellites details, Let’s take a look! </h3>
+        </div>
+	
 
 	<!-- Adding 1st Visualization -->
 
 	<div>
-        <h2 style="color:white;">Satellites Distributions In The World</h2>
+        <h2 style="color:white;">Who’s launching satellites?</h2>
 
-        <h4 style="color:white;">Since 1957, the first satellite was launched into space. Hundreds of satellites are launched into Earth’s orbit every year, 
-		until April 2020, there are now 2,666 satellites. Over the coming decade, it’s estimated by Euroconsult that 990 satellites will be launched every year, 
-		which means that by 2028, there could be 15,000 satellites in orbit. Human has great interest in exploring the space. In the past, 
-		satellites were just used to navigation, while at present, satellites are becoming critical for everything from internet connectivity 
-		and precision agriculture, to border security and archaeological study. For more satellites details, Let’s take a look! </h4>
+        <h4 style="color:white;">Technological advancement has made space exploration become much easier than in the past. There are more than 2,000 satellites now.
+        This chart shows how many satellites are that each country has launched. Colors present the quantity of satellite. By clicking map,
+        you will see the name of country and its satellites number. </h4>
     </div>
 
     <div class="legend"></div>
@@ -48,9 +58,10 @@
 	<div>
         <h2 style="color:white;">Satellites Application</h2>
 
-        <h4 style="color:white;">Based on our dataset, satellites are mainly classified by four application areas: Government, Military, Commercial and Civil.
-            The following static graph presents the development trend of satellite since 1988.
-            As you can see, they all develop fast in the recent years, especially in the commercial application. </h4>
+        <h4 style="color:white;">Satellites are launched into space for a number of reasons. They do everything from military reconnaissance to keeping
+        our GPS systems working properly. The truly global scope of telecommunications own to network of orbiting satellites.
+        In general, Satellites are mainly classified by four application areas: Government, Military, Commercial and Civil.
+        The following static graph presents the development trend of satellite since 1988. </h4>
     </div>
 
         <div class="lineChart" style="position: absolute;margin-left: 20%"></div>
@@ -85,6 +96,8 @@
 	<div style="margin-top: 550px;"></div>
 	<div>
 		<h2 style="color:white;">Types of Orbits</h2>
+		<h4 style="color:white;">Satellites are not randomly scatting on the space but rotate with the Earth and have own trajectory. Most of them distribute the following tracks:
+                       Leo, Meo, Geo and Elliptical. Drag the trajectory to see change and zoom it to see whole outlook.</h4>
 		<svg id="my_dataviz3" height=50 width=320 ></svg>
 	</div>
 	
@@ -156,6 +169,7 @@
 	
 	<div style="height: 150px"></div>
 	<h2 style="color:white;">Visualizing all the Satellites</h2>
+	<h4 style="color:white;">This dynamic graph presents how satellites rotate with the Earth. </h4>
 	<div class="globe"></div>
 
 	<script type="module">
