@@ -97,7 +97,7 @@
     </script>
 	</div>
 	
-	<!-- Adding Legends for 3rd Visualization -->
+	<!-- 3rd Visualization -->	
 	
 	<div>
 		<div style="height: 100px"></div>
@@ -105,6 +105,9 @@
 		<p>Just as different seats in a theater provide different perspectives on performance, different Earth orbits give satellites varying perspectives, each valuable for different reasons. Some seem to hover over a single spot, providing a constant view of one face of the Earth, while others circle the planet, zipping over many different places in a day. Together, the satellite’s height, eccentricity, and inclination determine the satellite’s path and what view it will have of Earth. There are essentially four types of Earth orbits: Leo, Meo, Geo, and Elliptical. 
 		<br><br>
 		Drag the trajectory to visualize it in a 3-d view. (For simplicity, we have not taken the eccentricity of the satellite into account for our visualization.)</p>
+		
+	<!-- Adding Legends for 3rd Visualization -->	
+	
 		<svg id="my_dataviz3" height=50 width=320 ></svg>
 	</div>
 	
@@ -124,7 +127,7 @@
 			.enter()
 			.append("rect")
 			.attr("y", 15)
-			.attr("x", function(d,i){ return 20 + i*(size+45)}) // 100 is where the first dot appears. 25 is the distance between dots
+			.attr("x", function(d,i){ return 20 + i*(size+45)}) 
 			.attr("width", size)
 			.attr("height", size)
 			.style("fill", function(d){ return color[d]})
@@ -133,8 +136,8 @@
 			.data(keys)
 			.enter()
 			.append("text")
-			.attr("y", 17 + size / 2)
-			.attr("x", function(d,i){ return 20 + i*(size+45) + (size+3)}) // 100 is where the first dot appears. 25 is the distance between dots
+			.attr("y", 21 + size / 2)
+			.attr("x", function(d,i){ return 20 + i*(size+45) + (size+3)})
 			.style("fill", function(d){ return color[d]})
 			.text(function(d){ return d})
 			.attr("text-anchor", "left")
@@ -171,12 +174,56 @@
 	});
 	</script>
 	
-	<!-- Adding 4th Visualization -->
+	
+	<!-- 4th Visualization -->
 	
 	<div style="height: 70px"></div>
 	<h2>Visualizing all the Satellites</h2>
-	<p>In the below visualization, we can see a few patterns created by the satellites which are revolving in their designated orbit. 
-		This dynamic visualization presents how all the satellites rotate around the Earth.  </p>
+	<p>In the below visualization, we can see a few patterns created by the satellites which are revolving in their designated orbits, just like all the Geostationary satellites are revolving around 36,000 km above the Earth surface forms a yellow belt around the Earth. 
+	<br>
+	This dynamic visualization presents how all the satellites rotate around the Earth. Drag the trajectory to visualize it in a 3-d view. </p>
+	
+	<!-- Adding Legends for 4th Visualization -->	
+	
+	<div style="height: 70px">
+	<svg id="my_dataviz4" height=50 width=320 ></svg>
+	</div>
+	
+	<script>
+		// select the svg area
+		var SVG = d3.select("#my_dataviz4")
+
+		// create a list of keys
+		var keys = ["Leo", "Meo", "Geo", "Elliptical"]
+		// var keys = ["Green", "Pink", "Blue", "Yellow"]
+
+		var color = {"Leo":"#7ee695", "Elliptical":"#ed7be0", "Meo":"#8490e8", "Geo":"#f2d96b"};
+
+		var size = 20
+		SVG.selectAll("mydots")
+			.data(keys)
+			.enter()
+			.append("rect")
+			.attr("y", 15)
+			.attr("x", function(d,i){ return 20 + i*(size+45)}) 
+			.attr("width", size)
+			.attr("height", size)
+			.style("fill", function(d){ return color[d]})
+
+		SVG.selectAll("mylabels")
+			.data(keys)
+			.enter()
+			.append("text")
+			.attr("y", 21 + size / 2)
+			.attr("x", function(d,i){ return 20 + i*(size+45) + (size+3)}) 
+			.style("fill", function(d){ return color[d]})
+			.text(function(d){ return d})
+			.attr("text-anchor", "left")
+			.style("alignment-baseline", "middle")
+	</script>
+	
+	<!-- Adding 4th Visualization -->
+	
 	<div class="globe"></div>
 
 	<script type="module">
