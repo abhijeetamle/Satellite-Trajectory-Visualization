@@ -3,7 +3,7 @@ CPSC-6030 Data Visualization Project
 
 Group number: G-04
 
-Group memebers: Abhijeet Amle & BingqianZhang              
+Group memebers: Abhijeet Amle & Bingqian Zhang              
                 
 Website URL: https://abhijeetamle.github.io/Satellite-Trajectory-Visualization/
 
