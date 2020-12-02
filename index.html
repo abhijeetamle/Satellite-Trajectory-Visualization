@@ -18,6 +18,12 @@
             font-style: normal;
             font-size: 20px;
         }
+        select { 
+			color:#5d6369;
+			cursor: pointer;
+			font-size: 18px;
+			padding: 10px;
+		}
         text{
             color: white;
         }
@@ -246,31 +252,33 @@
 
 <!-- Adding 4th Visualization -->
 
-<div class="globe"></div>
+<select id="orbit_selected_id">
+    <option value="ALL" selected>Select orbit - All</option>
+    <option value="LEO" >Leo</option>
+    <option value="MEO" >Meo</option>
+    <option value="GEO" >Geo</option>
+    <option value="Elliptical" >Elliptical</option>
+</select>
+
+<div class="globe" style="margin-top: 25px"></div>
+
 
 <script type="module">
-    import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
-    import define from "https://api.observablehq.com/d/21dcabcb632f885c.js?v=3";
-    (new Runtime).module(define, name => {
-        if (name === "globe") return Inspector.into(".globe")();
-        if (name === "scene") return true;
-        if (name === "orbit") return true;
-        if (name === "renderer") return true;
-        if (name === "controls") return true;
-        if (name === "camera") return true;
-        if (name === "light") return true;
-        if (name === "earth") return true;
-        if (name === "texture") return true;
-        if (name === "G") return true;
-        if (name === "earthMass") return true;
-        if (name === "earthRadius") return true;
-        if (name === "earthAngularVelocity") return true;
-        if (name === "map") return true;
-        if (name === "naturalEarth") return true;
-        if (name === "dataset") return true;
-        if (name === "THREE") return true;
-        if (name === "d3") return true;
-    });
+	import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+	import define from "https://api.observablehq.com/d/f7de2af73c5d963c.js?v=3";
+	(new Runtime).module(define, name => {
+		if (name === "globe") return Inspector.into(".globe")();
+		if (name === "orbit") return true;
+		if (name === "light") return true;
+		if (name === "G") return true;
+		if (name === "earthMass") return true;
+		if (name === "earthRadius") return true;
+		if (name === "earthAngularVelocity") return true;
+		if (name === "naturalEarth") return true;
+		if (name === "dataset") return true;
+		if (name === "THREE") return true;
+		if (name === "d3") return true;
+	});
 </script>
 
 </body>
